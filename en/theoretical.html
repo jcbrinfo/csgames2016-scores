@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>CS Games</title>
+		<meta name="description" content="CS Games Registration">
+		<meta name="author" content="CS Games">
+
+		<!-- Styles, keep this ordering -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		
+		<!-- Less version of style sheet and compiler. Use for development as needed, by commenting css/registration.css inclusion -->
+		<!-- 
+		  <link rel="stylesheet/less" type="text/css" href="less/registration.less">
+		  <script src="js/less-1.3.0.min.js" type="text/javascript"></script>
+		-->
+    <link rel="stylesheet" href="css/registration.css">
+    <!--<link href="css/bootstrap-responsive.min.css" rel="stylesheet">-->
+
+		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+		<!--[if lt IE 9]>
+		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+    <!-- Google Analytics -->		
+		<script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35948775-1']);
+      _gaq.push(['_setDomainName', 'csgames.org']);
+      _gaq.push(['_trackPageview']);
+    
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+	</head>
+
+
+	<body>
+
+		<div class="container">
+				
+			<div class="page-body">
+
+    <h1>Scores</h1>
+    <p>This page will show you the competition results as they are compiled and the current ranking over all competitions. Select a competition from the menu to view its results or choose "Overall Results" for the overall ranking.</p>
+
+<form name="frmResults" id="frmResults" method="post" action="">      
+  <select name="cboComp" id="cboComp" onChange="document.frmResults.submit()">
+    <option value="">Overall results</option>
+    <option value="5">Algorithmie: 5%</option><option value="4">Artificial Intelligence: 7%</option><option value="8">Compilation: 7%</option><option value="14">Debugging: 6%</option><option value="3">Extreme Programming: 6%</option><option value="2">Long running: 8%</option><option value="15">Mobile development: 5%</option><option value="7">Operating System: 5%</option><option value="16">Parallel programming: 5%</option><option value="17">Participation: 3%</option><option value="6">Relay Programming: 5%</option><option value="13">Reverse Ingeneering: 5%</option><option value="1">Scavenger Hunt / Puzzle Heros: 10%</option><option value="9">Software Engineering: 6%</option><option value="12">Sport & Video Game: 7%</option><option value="10" selected>Theoretical Computer Science : 5%</option><option value="11">Web Developpement: 5%</option>  </select>
+
+    <h2>Theoretical Computer Science </h2>
+      <p>This event is worth 5% of the overall ranking</p>
+
+    <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+          <th>Rank</th>
+      <th>University</th>
+      <th>Team Name</th>
+      <th>Score/100</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    <tr><td class="tableContent" align="center">1</td><td class="tableContent">Rochester2</td><td class="tableContent">Black Hats</td><td class="tableContent" align="center">100</td></tr><tr><td class="tableContent" align="center">2</td><td class="tableContent">Poly1</td><td class="tableContent">PolyBlue</td><td class="tableContent" align="center">78.26</td></tr><tr><td class="tableContent" align="center">3</td><td class="tableContent">Rochester1</td><td class="tableContent">White Hats</td><td class="tableContent" align="center">75</td></tr><tr><td class="tableContent" align="center">4</td><td class="tableContent">UDEM</td><td class="tableContent">Garbage Collectors</td><td class="tableContent" align="center">71.74</td></tr><tr><td class="tableContent" align="center">5</td><td class="tableContent">Laval1</td><td class="tableContent">Code troopers ulaval legion 1</td><td class="tableContent" align="center">70.65</td></tr><tr><td class="tableContent" align="center">6</td><td class="tableContent">Poly2</td><td class="tableContent">PolyRed</td><td class="tableContent" align="center">59.78</td></tr><tr><td class="tableContent" align="center">7</td><td class="tableContent">Sherbrooke2</td><td class="tableContent">Dark JDIs</td><td class="tableContent" align="center">50</td></tr><tr><td class="tableContent" align="center">7</td><td class="tableContent">Manitoba1</td><td class="tableContent">District HEX</td><td class="tableContent" align="center">50</td></tr><tr><td class="tableContent" align="center">7</td><td class="tableContent">Laurentian1</td><td class="tableContent">New Sudbury Republic</td><td class="tableContent" align="center">50</td></tr><tr><td class="tableContent" align="center">8</td><td class="tableContent">Queens</td><td class="tableContent">Additional Pylons</td><td class="tableContent" align="center">47.83</td></tr><tr><td class="tableContent" align="center">9</td><td class="tableContent">Windsor2</td><td class="tableContent">Dub City</td><td class="tableContent" align="center">45.65</td></tr><tr><td class="tableContent" align="center">10</td><td class="tableContent">Laurentian2</td><td class="tableContent">Vault lul</td><td class="tableContent" align="center">32.61</td></tr><tr><td class="tableContent" align="center">10</td><td class="tableContent">UQAC</td><td class="tableContent">The John C#</td><td class="tableContent" align="center">32.61</td></tr><tr><td class="tableContent" align="center">11</td><td class="tableContent">Concordia1</td><td class="tableContent">Arcologists</td><td class="tableContent" align="center">31.52</td></tr><tr><td class="tableContent" align="center">12</td><td class="tableContent">UQAM1</td><td class="tableContent">LispMachine</td><td class="tableContent" align="center">28.26</td></tr><tr><td class="tableContent" align="center">13</td><td class="tableContent">Sherbrooke1</td><td class="tableContent">JDIs</td><td class="tableContent" align="center">23.91</td></tr><tr><td class="tableContent" align="center">14</td><td class="tableContent">MCGill</td><td class="tableContent">while (e_coyote) {}</td><td class="tableContent" align="center">22.83</td></tr><tr><td class="tableContent" align="center">15</td><td class="tableContent">Laval2</td><td class="tableContent">Code troopers ulaval legion 2</td><td class="tableContent" align="center">21.74</td></tr><tr><td class="tableContent" align="center">16</td><td class="tableContent">Brock1</td><td class="tableContent">Clone University</td><td class="tableContent" align="center">20.65</td></tr><tr><td class="tableContent" align="center">17</td><td class="tableContent">Manitoba2</td><td class="tableContent">HEX-men</td><td class="tableContent" align="center">19.57</td></tr><tr><td class="tableContent" align="center">18</td><td class="tableContent">École de Technologie Supérieure1</td><td class="tableContent">StuxnETS</td><td class="tableContent" align="center">18.48</td></tr><tr><td class="tableContent" align="center">19</td><td class="tableContent">Concordia2</td><td class="tableContent">Darth Raiders</td><td class="tableContent" align="center">16.3</td></tr><tr><td class="tableContent" align="center">19</td><td class="tableContent">Windsor1</td><td class="tableContent">Tsintax Error</td><td class="tableContent" align="center">16.3</td></tr><tr><td class="tableContent" align="center">20</td><td class="tableContent">Brock2</td><td class="tableContent">Clone High</td><td class="tableContent" align="center">14.13</td></tr><tr><td class="tableContent" align="center">21</td><td class="tableContent">York1</td><td class="tableContent">FluffyHackers</td><td class="tableContent" align="center">10.87</td></tr><tr><td class="tableContent" align="center">22</td><td class="tableContent">UQO</td><td class="tableContent">REI</td><td class="tableContent" align="center">8.7</td></tr><tr><td class="tableContent" align="center">22</td><td class="tableContent">UQAM2</td><td class="tableContent">ApocaLISP</td><td class="tableContent" align="center">8.7</td></tr><tr><td class="tableContent" align="center">22</td><td class="tableContent">York2</td><td class="tableContent">Fluffy hackers 2</td><td class="tableContent" align="center">8.7</td></tr><tr><td class="tableContent" align="center">23</td><td class="tableContent">Ottawa</td><td class="tableContent">Yoga Rebels</td><td class="tableContent" align="center">6.52</td></tr><tr><td class="tableContent" align="center">24</td><td class="tableContent">École de Technologie Supérieure2</td><td class="tableContent">BotnETS</td><td class="tableContent" align="center">4.35</td></tr></tbody></table></form><div>			
+		</div><!-- /container -->
+
+		<!-- Le javascript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="js/bootstrap.min.js"></script>
+		<!--<script src="js/stickynav.js"></script>-->
+		
+		    		<script type="text/javascript">
+    		  if (window.parent) {
+    		    window.parent.scrollTo(0, $("#content", window.parent.document).offset().top);
+    		  }
+    		</script>
+			</body>
+</html>
