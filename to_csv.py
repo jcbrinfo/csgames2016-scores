@@ -12,7 +12,7 @@ python3 to-csv.py {year}
 import csv
 import os
 import os.path
-from sys import argv
+from sys import argv, stderr
 from xml.dom.minidom import parseString
 
 IN_EXT = ".html"
@@ -57,8 +57,11 @@ def get_inner_text(element):
 			buffer.append(get_inner_text(node))
 	return "".join(buffer)
 
-if __name__ == "__main__":
-	year = argv[1]
+def run(year):
+	"""
+	Run the program with the specified year.
+	"""
+
 	project_dir = os.path.dirname(os.path.realpath(__file__))
 	in_dir = os.path.join(project_dir, year, "en/")
 	out_dir = os.path.join(project_dir, year, "csv/")
@@ -69,7 +72,7 @@ if __name__ == "__main__":
 	for filename in os.listdir(in_dir):
 		in_file_path = os.path.join(in_dir, filename)
 		if os.path.isfile(in_file_path) and filename.endswith(IN_EXT):
-			print(in_file_path)
+			stderr.write("Extracting data from " + in_file_path + "…")
 			out_file_path = os.path.join(
 				out_dir,
 				filename[:-len(IN_EXT)] + OUT_EXT
@@ -83,3 +86,8 @@ if __name__ == "__main__":
 							+ tr.getElementsByTagName("th")
 						)
 						writer.writerow(list(get_inner_text(cell) for cell in cells))
+			stderr.write(" Done.\n")
+
+if __name__ == "__main__":
+	year = argv[1]
+	run(year)
