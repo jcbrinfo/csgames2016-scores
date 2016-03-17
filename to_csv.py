@@ -87,6 +87,8 @@ class WebPage(object):
 				return option.getAttribute("value")
 		raise NotFoundError("Selected option not found")
 
+
+
 def get_inner_text(element):
 	"""
 	Get the inner text of the specified XML element.
@@ -167,6 +169,59 @@ def list_teams(in_path, out_path):
 		stderr.write(" Done.\n")
 	return mapping
 
+def split_competition_name(name):
+	"""
+	Split a verbose competition name as a competition name and a weight.
+
+	Return value
+	------------
+	(str, str)
+	"""
+	SPLIT_TOKEN = ": "
+	print(name)
+	split_index = name.rindex(SPLIT_TOKEN)
+	return (
+		name[:split_index].rstrip(),
+		name[split_index + len(SPLIT_TOKEN):-1].lstrip()
+	)
+
+def list_competitions(en_path, fr_path, out_path):
+	"""
+	Save the list of the competitions as a CSV file (data for the `competitions`
+	table).
+
+	Parameters
+	----------
+	en_path : str
+		path to a score page of the same year, in English
+	fr_path : str
+		path to a score page of the same year, in French
+	out_path : str
+		path to the output file
+	"""
+	with open(out_path, "w", newline="") as out_file:
+		competitions = dict()
+		stderr.write("Extracting data from " + en_path + " and " + fr_path + "…")
+		writer = csv.writer(out_file)
+		with WebPage(en_path) as en_page, WebPage(fr_path) as fr_page:
+			en_options = iter(en_page.document.getElementsByTagName("option"))
+			fr_options = iter(fr_page.document.getElementsByTagName("option"))
+
+			# Skip the “Overall Results” option
+			next(en_options)
+			next(fr_options)
+
+			for option in en_options:
+				id = option.getAttribute("value")
+				(name, weight) = split_competition_name(get_inner_text(option))
+				competitions[id] = [id, name, None, weight]
+			for option in fr_options:
+				id = option.getAttribute("value")
+				name = split_competition_name(get_inner_text(option))[0]
+				competitions[id][2] = name
+			writer.writerows(competitions.values())
+		stderr.write(" Done.\n")
+
 def run(year):
 	"""
 	Run the program with the specified year.
@@ -174,17 +229,23 @@ def run(year):
 
 	project_dir = os.path.dirname(os.path.realpath(__file__))
 	year_dir = os.path.join(project_dir, year)
-	in_dir = os.path.join(year_dir, "en")
+	en_dir = os.path.join(year_dir, "en")
+	fr_dir = os.path.join(year_dir, "en")
 	out_dir = os.path.join(year_dir, "csv")
 
 	if not os.path.isdir(out_dir):
 		os.mkdir(out_dir)
 
+	list_competitions(
+		os.path.join(en_dir, OVERALL_FILENAME),
+		os.path.join(fr_dir, OVERALL_FILENAME),
+		os.path.join(out_dir, "competitions.csv")
+	)
 	teams = list_teams(
-		os.path.join(in_dir, REGISTRATION_FILENAME),
+		os.path.join(en_dir, REGISTRATION_FILENAME),
 		os.path.join(out_dir, "delegations.csv")
 	)
-	list_scores(in_dir, os.path.join(out_dir, "compscores.csv"), teams)
+	list_scores(en_dir, os.path.join(out_dir, "compscores.csv"), teams)
 
 if __name__ == "__main__":
 	year = argv[1]

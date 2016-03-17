@@ -17,6 +17,10 @@ Ceci est une archive des résultats officiels des CS Games.
 		Data of the <code>delegations</code> table. /
 		Données de la table <code>delegations</code>.
 	</dd>
+	<dt><code>{year / année}/csv/competitions.csv</code></dt><dd>
+		Data of the <code>competitions</code> table. /
+		Données de la table <code>competitions</code>.
+	</dd>
 	<dt><code>{year}/en/</code></dt><dd>English web pages</dd>
 	<dt><code>{année}/fr/</code></dt><dd>Pages web francophones</dd>
 	<dt><code>{year / année}/{en|fr}/overall.html</code></dt><dd>
