@@ -64,8 +64,7 @@ class WebPage(object):
 		for tr in self.document.getElementsByTagName("tr"):
 			cells = tr.getElementsByTagName("td")
 			if cells:
-				for cell in cells:
-					yield list(get_inner_text(cell) for cell in cells)
+				yield list(get_inner_text(cell) for cell in cells)
 
 def get_inner_text(element):
 	"""
