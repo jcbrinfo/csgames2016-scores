@@ -24,6 +24,16 @@ Ceci est une archive des résultats officiels des CS Games.
 		Extracts data as CSV files. /
 		Extrait les données sous la forme de fichiers CSV.
 	</dd>
+	<dt><code>University</code></dt><dd>
+		<p>Content of the <code>University</code> table and aliases.
+		When multiple rows have the same ID, only the first one is stored
+		in the database and the others are used to fix university names of the
+		raw data.</p>
+		<p>Contenu de la table <code>University</code> et alias. Lorsque
+		plusieurs lignes partagent le même identifiant, seul la première est
+		enregistrée dans la base de données. Les autres sont utilisés pour
+		corriger les noms présents dans les données brutes.</p>
+	</dd>
 </dl>
 
 # License / Licence
