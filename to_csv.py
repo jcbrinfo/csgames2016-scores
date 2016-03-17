@@ -12,6 +12,7 @@ python3 to-csv.py {year}
 import csv
 import os
 import os.path
+import re
 from sys import argv, stderr
 from xml.dom.minidom import parseString
 
@@ -22,8 +23,10 @@ class WebPage(object):
 	"""
 	Parser for an input web page. Skips the non-XML lines pass the rest
 	`to xml.dom.minidom.parse`. Also fix boolean attributes, some ampersands and
-	unclosed `<div>`s.
+	unclosed `<div>`s and `<td>`s.
 	"""
+
+	UNCLOSED_TD_RE = re.compile("<td>([0-9]+)<td>")
 
 	def __init__(self, path):
 		self.path = path
@@ -39,6 +42,7 @@ class WebPage(object):
 		for i in range(len(lines)):
 			lines[i] = lines[i].replace(" selected>", " selected=\"\">")
 			lines[i] = lines[i].replace(" & ", " &amp; ")
+			lines[i] = re.sub(self.UNCLOSED_TD_RE, r"<td>\1</td><td>", lines[i])
 		return parseString("".join(lines))
 
 	def __exit__(self, type, value, trace):
