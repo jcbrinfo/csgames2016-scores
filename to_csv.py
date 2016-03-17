@@ -24,6 +24,8 @@ class WebPage(object):
 	Parser for an input web page. Skips the non-XML lines pass the rest
 	`to xml.dom.minidom.parse`. Also fix boolean attributes, some ampersands and
 	unclosed `<div>`s and `<td>`s.
+
+	Usable only once `__enter__` is called (using `with`).
 	"""
 
 	UNCLOSED_TD_RE = re.compile("<td>([0-9]+)<td>")
@@ -35,6 +37,12 @@ class WebPage(object):
 			path to the input file
 		"""
 
+		self.document = None
+		"""
+		xml.dom.Document
+			actual parsed document
+		"""
+
 	def __enter__(self):
 		with open(self.path) as in_file:
 			lines = in_file.readlines()
@@ -43,15 +51,25 @@ class WebPage(object):
 			lines[i] = lines[i].replace(" selected>", " selected=\"\">")
 			lines[i] = lines[i].replace(" & ", " &amp; ")
 			lines[i] = re.sub(self.UNCLOSED_TD_RE, r"<td>\1</td><td>", lines[i])
-		return parseString("".join(lines))
+		self.document = parseString("".join(lines))
+		return self
 
 	def __exit__(self, type, value, trace):
 		pass
 
+	def get_table_data(self):
+		"""
+		Yield each `<tr>` that has `<td>` elements as a list of strings.
+		"""
+		for tr in self.document.getElementsByTagName("tr"):
+			cells = tr.getElementsByTagName("td")
+			if cells:
+				for cell in cells:
+					yield list(get_inner_text(cell) for cell in cells)
 
 def get_inner_text(element):
 	"""
-	Get the inner text of the specified element.
+	Get the inner text of the specified XML element.
 	"""
 	buffer = []
 	for node in element.childNodes:
@@ -83,13 +101,9 @@ def run(year):
 			)
 			with open(out_file_path, "w", newline="") as out_file:
 				writer = csv.writer(out_file)
-				with WebPage(in_file_path) as document:
-					for tr in document.getElementsByTagName("tr"):
-						cells = (
-							tr.getElementsByTagName("td")
-							+ tr.getElementsByTagName("th")
-						)
-						writer.writerow(list(get_inner_text(cell) for cell in cells))
+				with WebPage(in_file_path) as page:
+					for row in page.get_table_data():
+						writer.writerow(row)
 			stderr.write(" Done.\n")
 
 if __name__ == "__main__":
