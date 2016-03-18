@@ -15,7 +15,7 @@ create table delegations (
 	delegAddress3 VarChar(100),
 	delegCity VarChar(100) not null default '',
 	delegProv VarChar(50),
-	delegCountry VarChar(20) not null default 'Canada',
+	delegCountry VarChar(20) default 'Canada',
 		-- in ('Canada','United States','Other')
 	delegPostal VarChar(15),
 	delegUsername VarChar(30) not null default '',
