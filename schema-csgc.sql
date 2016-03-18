@@ -46,12 +46,12 @@ create table compscores (
 		primary key (compID,delegID),
 	constraint compscores__fk_compID
 		foreign key (compID)
-		referencing competitions(compID)
+		references competitions(compID)
 		on delete cascade
 		on update restrict,
 	constraint compscores__fk_delegID
 		foreign key (delegID)
-		referencing delegatinos(delegID)
+		references delegatinos(delegID)
 		on delete cascade
 		on update restrict
 );
