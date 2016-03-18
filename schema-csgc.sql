@@ -27,7 +27,7 @@ create table delegations (
 	extraHotelRooms Integer not null default 0,
 	extraHotelNights Integer not null default 0,
 	delegAlias VarChar(60) not null default '',
-	delegLanguage Char(2) not null default 'en',
+	delegLanguage Char(2) default 'en',
 		-- in ('fr','en')
 	didFlashOut Integer not null default 0,
 	flashOutFile VarChar(255),
