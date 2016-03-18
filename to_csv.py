@@ -169,7 +169,7 @@ def list_teams(in_path, out_path):
 		stderr.write(" Done.\n")
 	return mapping
 
-def split_competition_name(name):
+def split_competition_name(long_name):
 	"""
 	Split a verbose competition name as a competition name and a weight.
 
@@ -177,12 +177,10 @@ def split_competition_name(name):
 	------------
 	(str, str)
 	"""
-	SPLIT_TOKEN = ": "
-	print(name)
-	split_index = name.rindex(SPLIT_TOKEN)
+	(name, weight) = long_name.rsplit(": ", 2)
 	return (
-		name[:split_index].rstrip(),
-		name[split_index + len(SPLIT_TOKEN):-1].lstrip()
+		name.rstrip(),
+		weight[:-1].strip()
 	)
 
 def list_competitions(en_path, fr_path, out_path):
