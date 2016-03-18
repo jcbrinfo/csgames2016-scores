@@ -160,9 +160,11 @@ def list_teams(in_path, out_path):
 				university = row[1]
 				name = row[2]
 				writer.writerow((
-					id, university, None, None, None, None, None, None, None,
-					None, None, None, None, None, None, None, None, name,
-					None, None, None, None, None, None
+					id, university, None, None, None,
+					None, None, None, None, None,
+					None, 0, None, None, None,
+					0, 0, name, None, 0,
+					None, None, 0, None
 				))
 				mapping[name] = id
 				id += 1
