@@ -1,23 +1,10 @@
--- Dialect : MySQL
+begin transaction;
 
 --
--- Table structure for table `competitions`
+-- Dumping data for table competitions
 --
 
-CREATE TABLE IF NOT EXISTS `competitions` (
-  `compID` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `compName_en` varchar(255) DEFAULT NULL,
-  `compName_fr` varchar(255) DEFAULT NULL,
-  `compWeight` float unsigned NOT NULL DEFAULT '0' COMMENT 'Competition weight out of 100',
-  `compResultsLink` varchar(250) DEFAULT NULL,
-  PRIMARY KEY (`compID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
-
---
--- Dumping data for table `competitions`
---
-
-INSERT INTO `competitions` (`compID`, `compName_en`, `compName_fr`, `compWeight`, `compResultsLink`) VALUES
+INSERT INTO competitions (compID, compName_en, compName_fr, compWeight, compResultsLink) VALUES
 (1, 'Scavenger Hunt / Puzzle Heros', 'Chasse au trésor / Casse-tête du Héro', 10, NULL),
 (2, 'Long running', 'Longue haleine', 8, NULL),
 (3, 'Extreme Programming', 'Programmation Extrême', 6, NULL),
@@ -39,23 +26,48 @@ INSERT INTO `competitions` (`compID`, `compName_en`, `compName_fr`, `compWeight`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `compscores`
+-- Dumping data for table delegations
 --
 
-CREATE TABLE IF NOT EXISTS `compscores` (
-  `compID` int(11) unsigned NOT NULL DEFAULT '0',
-  `delegID` int(11) unsigned NOT NULL DEFAULT '0',
-  `teamScore` double unsigned DEFAULT '0' COMMENT 'Score out of 100',
-  PRIMARY KEY (`compID`,`delegID`),
-  KEY `compID` (`compID`),
-  KEY `delegID` (`delegID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+INSERT INTO delegations (delegID, delegUniversity, delegAddress1, delegAddress2, delegAddress3, delegCity, delegProv, delegCountry, delegPostal, delegUsername, delegPassword, regIsCancelled, regDate, regCancelDate, hotelDetails, extraHotelRooms, extraHotelNights, delegAlias, delegLanguage, didFlashOut, flashOutFile, adminNotes, excludeFromOverallResults, delegSite) VALUES
+(1, 'École de Technologie Supérieure1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'StuxnETS', 'en', 0, NULL, NULL, 0, NULL),
+(2, 'École de Technologie Supérieure2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'BotnETS', 'en', 0, NULL, NULL, 0, NULL),
+(3, 'Brock1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Clone University', 'en', 0, NULL, NULL, 0, NULL),
+(4, 'Brock2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Clone High', 'en', 0, NULL, NULL, 0, NULL),
+(5, 'Concordia1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Arcologists', 'en', 0, NULL, NULL, 0, NULL),
+(6, 'Concordia2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Darth Raiders', 'en', 0, NULL, NULL, 0, NULL),
+(7, 'Laurentian1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'New Sudbury Republic', 'en', 0, NULL, NULL, 0, NULL),
+(8, 'Laurentian2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Vault lul', 'en', 0, NULL, NULL, 0, NULL),
+(9, 'Laval1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Code troopers ulaval legion 1', 'en', 0, NULL, NULL, 0, NULL),
+(10, 'Laval2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Code troopers ulaval legion 2', 'en', 0, NULL, NULL, 0, NULL),
+(11, 'Manitoba1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'District HEX', 'en', 0, NULL, NULL, 0, NULL),
+(12, 'Manitoba2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'HEX-men', 'en', 0, NULL, NULL, 0, NULL),
+(13, 'MCGill', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'while (e_coyote) {}', 'en', 0, NULL, NULL, 0, NULL),
+(14, 'Ottawa', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Yoga Rebels', 'en', 0, NULL, NULL, 0, NULL),
+(15, 'Poly1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'PolyBlue', 'en', 0, NULL, NULL, 0, NULL),
+(16, 'Poly2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'PolyRed', 'en', 0, NULL, NULL, 0, NULL),
+(17, 'Queens', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Additional Pylons', 'en', 0, NULL, NULL, 0, NULL),
+(18, 'Rochester1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'White Hats', 'en', 0, NULL, NULL, 0, NULL),
+(19, 'Rochester2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Black Hats', 'en', 0, NULL, NULL, 0, NULL),
+(20, 'Sherbrooke1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'JDIs', 'en', 0, NULL, NULL, 0, NULL),
+(21, 'Sherbrooke2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Dark JDIs', 'en', 0, NULL, NULL, 0, NULL),
+(22, 'UDEM', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Garbage Collectors', 'en', 0, NULL, NULL, 0, NULL),
+(23, 'UQAC', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'The John C#', 'en', 0, NULL, NULL, 0, NULL),
+(24, 'UQAM1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'LispMachine', 'en', 0, NULL, NULL, 0, NULL),
+(25, 'UQAM2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'ApocaLISP', 'en', 0, NULL, NULL, 0, NULL),
+(26, 'UQO', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'REI', 'en', 0, NULL, NULL, 0, NULL),
+(27, 'Windsor1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Tsintax Error', 'en', 0, NULL, NULL, 0, NULL),
+(28, 'Windsor2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Dub City', 'en', 0, NULL, NULL, 0, NULL),
+(29, 'York1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'FluffyHackers', 'en', 0, NULL, NULL, 0, NULL),
+(30, 'York2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Fluffy hackers 2', 'en', 0, NULL, NULL, 0, NULL);
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `compscores`
+-- Dumping data for table compscores
 --
 
-INSERT INTO `compscores` (`compID`, `delegID`, `teamScore`) VALUES
+INSERT INTO compscores (compID, delegID, teamScore) VALUES
 (10, 1, 18.478260869565),
 (10, 2, 4.3478260869565),
 (10, 3, 20.652173913043),
@@ -542,73 +554,5 @@ INSERT INTO `compscores` (`compID`, `delegID`, `teamScore`) VALUES
 (11, 29, 5.2631578947368),
 (11, 30, 18.421052631579);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `delegations`
---
-
-CREATE TABLE IF NOT EXISTS `delegations` (
-  `delegID` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `delegUniversity` varchar(200) NOT NULL DEFAULT '',
-  `delegAddress1` varchar(100) NOT NULL DEFAULT '',
-  `delegAddress2` varchar(100) DEFAULT NULL,
-  `delegAddress3` varchar(100) DEFAULT NULL,
-  `delegCity` varchar(100) NOT NULL DEFAULT '',
-  `delegProv` varchar(50) DEFAULT NULL,
-  `delegCountry` enum('Canada','United States','Other') NOT NULL DEFAULT 'Canada',
-  `delegPostal` varchar(15) DEFAULT NULL,
-  `delegUsername` varchar(30) NOT NULL DEFAULT '',
-  `delegPassword` varchar(64) NOT NULL DEFAULT '',
-  `regIsCancelled` tinyint(1) NOT NULL DEFAULT '0',
-  `regDate` varchar(50) NOT NULL DEFAULT 'unknown',
-  `regCancelDate` varchar(50) DEFAULT NULL,
-  `hotelDetails` text,
-  `extraHotelRooms` int(11) NOT NULL DEFAULT '0',
-  `extraHotelNights` int(11) NOT NULL DEFAULT '0',
-  `delegAlias` varchar(60) NOT NULL DEFAULT '',
-  `delegLanguage` enum('fr','en') NOT NULL DEFAULT 'en',
-  `didFlashOut` tinyint(1) NOT NULL DEFAULT '0',
-  `flashOutFile` varchar(255) DEFAULT NULL,
-  `adminNotes` text,
-  `excludeFromOverallResults` tinyint(1) NOT NULL,
-  `delegSite` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`delegID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=37 ;
-
---
--- Dumping data for table `delegations`
---
-
-INSERT INTO `delegations` (`delegID`, `delegUniversity`, `delegAddress1`, `delegAddress2`, `delegAddress3`, `delegCity`, `delegProv`, `delegCountry`, `delegPostal`, `delegUsername`, `delegPassword`, `regIsCancelled`, `regDate`, `regCancelDate`, `hotelDetails`, `extraHotelRooms`, `extraHotelNights`, `delegAlias`, `delegLanguage`, `didFlashOut`, `flashOutFile`, `adminNotes`, `excludeFromOverallResults`, `delegSite`) VALUES
-(1, 'École de Technologie Supérieure1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'StuxnETS', 'en', 0, NULL, NULL, 0, NULL),
-(2, 'École de Technologie Supérieure2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'BotnETS', 'en', 0, NULL, NULL, 0, NULL),
-(3, 'Brock1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Clone University', 'en', 0, NULL, NULL, 0, NULL),
-(4, 'Brock2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Clone High', 'en', 0, NULL, NULL, 0, NULL),
-(5, 'Concordia1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Arcologists', 'en', 0, NULL, NULL, 0, NULL),
-(6, 'Concordia2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Darth Raiders', 'en', 0, NULL, NULL, 0, NULL),
-(7, 'Laurentian1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'New Sudbury Republic', 'en', 0, NULL, NULL, 0, NULL),
-(8, 'Laurentian2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Vault lul', 'en', 0, NULL, NULL, 0, NULL),
-(9, 'Laval1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Code troopers ulaval legion 1', 'en', 0, NULL, NULL, 0, NULL),
-(10, 'Laval2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Code troopers ulaval legion 2', 'en', 0, NULL, NULL, 0, NULL),
-(11, 'Manitoba1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'District HEX', 'en', 0, NULL, NULL, 0, NULL),
-(12, 'Manitoba2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'HEX-men', 'en', 0, NULL, NULL, 0, NULL),
-(13, 'MCGill', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'while (e_coyote) {}', 'en', 0, NULL, NULL, 0, NULL),
-(14, 'Ottawa', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Yoga Rebels', 'en', 0, NULL, NULL, 0, NULL),
-(15, 'Poly1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'PolyBlue', 'en', 0, NULL, NULL, 0, NULL),
-(16, 'Poly2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'PolyRed', 'en', 0, NULL, NULL, 0, NULL),
-(17, 'Queens', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Additional Pylons', 'en', 0, NULL, NULL, 0, NULL),
-(18, 'Rochester1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'White Hats', 'en', 0, NULL, NULL, 0, NULL),
-(19, 'Rochester2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Black Hats', 'en', 0, NULL, NULL, 0, NULL),
-(20, 'Sherbrooke1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'JDIs', 'en', 0, NULL, NULL, 0, NULL),
-(21, 'Sherbrooke2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Dark JDIs', 'en', 0, NULL, NULL, 0, NULL),
-(22, 'UDEM', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Garbage Collectors', 'en', 0, NULL, NULL, 0, NULL),
-(23, 'UQAC', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'The John C#', 'en', 0, NULL, NULL, 0, NULL),
-(24, 'UQAM1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'LispMachine', 'en', 0, NULL, NULL, 0, NULL),
-(25, 'UQAM2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'ApocaLISP', 'en', 0, NULL, NULL, 0, NULL),
-(26, 'UQO', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'REI', 'en', 0, NULL, NULL, 0, NULL),
-(27, 'Windsor1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Tsintax Error', 'en', 0, NULL, NULL, 0, NULL),
-(28, 'Windsor2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Dub City', 'en', 0, NULL, NULL, 0, NULL),
-(29, 'York1', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'FluffyHackers', 'en', 0, NULL, NULL, 0, NULL),
-(30, 'York2', '', NULL, NULL, '', NULL, 'Canada', NULL, '', '', 0, 'unknown', NULL, NULL, 0, 0, 'Fluffy hackers 2', 'en', 0, NULL, NULL, 0, NULL);
-
+-- -----------------------------------------------------------------------------
+commit;
